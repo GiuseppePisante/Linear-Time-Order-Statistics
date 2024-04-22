@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 std::ostream &operator<<(std::ostream &os, const std::vector<int> vec)
 {
@@ -82,6 +83,12 @@ std::vector<int> partition_vector(std::vector<int> input, int &rank, int pivot)
 
     for (int j = 0; j < input.size() - tmp; j++)
     {
+        if (input[j] == pivot)
+        {
+            input[j] = input[input.size() - tmp - 1];
+            input[input.size() - tmp - 1] = pivot;
+            tmp++;
+        }
         if (input[j] < pivot)
         {
             if (j == k)
@@ -95,13 +102,6 @@ std::vector<int> partition_vector(std::vector<int> input, int &rank, int pivot)
                 input[j] = key;
                 k++;
             }
-        }
-        else if (input[j] == pivot)
-        {
-            input[j] = input[input.size() - tmp - 1];
-            input[input.size() - tmp - 1] = pivot;
-            tmp++;
-            j--;
         }
     }
     for (int j = 0; j < tmp; j++)
@@ -124,7 +124,7 @@ std::vector<int> partition_vector(std::vector<int> input, int &rank, int pivot)
     else if (k > rank)
     {
         std::vector<int>::const_iterator start = input.begin();
-        std::vector<int>::const_iterator stop = input.begin() + k - tmp;
+        std::vector<int>::const_iterator stop = input.begin() + k - 1;
 
         std::vector<int> partitioned(start, stop);
         return partitioned;
@@ -138,7 +138,6 @@ std::vector<int> partition_vector(std::vector<int> input, int &rank, int pivot)
 
 int linearTimeOrderStatistics(std::vector<int> input, int rank)
 {
-
     int pivot = find_pivot(input);
     input = partition_vector(input, rank, pivot);
 
@@ -156,14 +155,21 @@ int linearTimeOrderStatistics(std::vector<int> input, int rank)
 int main()
 {
 
-    std::vector<int> input = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                              11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-                              23, 24, 25, 26, 27, 28, 29};
+    std::vector<int> input = {97, 34, 16, 13, 25, 57, 88,
+                              15, 23, 98, 29, 77, 14, 58, 83, 49, 60, 40, 52, 65,
+                              31, 55, 2, 33, 30, 35, 35, 35, 35, 35, 35, 42, 20, 8, 75};
 
-    for (int rank = 1; rank <= input.size(); rank++)
+    for (int rank = 1; rank < input.size(); rank++)
     {
         int value = linearTimeOrderStatistics(input, rank);
         std::cout << "Valore " << value << std::endl;
+
+        int arr[] = {97, 34, 16, 13, 25, 57, 88,
+                     15, 23, 98, 29, 77, 14, 58, 83, 49, 60, 40, 52, 65,
+                     31, 55, 2, 33, 30, 35, 35, 35, 35, 35, 35, 42, 20, 8, 75};
+        int n = sizeof(arr) / sizeof(arr[0]);
+        std::sort(arr, arr + n);
+        std::cout << "Valore esatto: " << arr[rank - 1] << std::endl;
     }
     return 0;
 }
