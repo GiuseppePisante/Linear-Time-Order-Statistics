@@ -24,7 +24,7 @@ int main()
   std::vector<int> ordered_array = input;
   std::sort(ordered_array.begin(), ordered_array.end());
 
-  for (int rank = 0; rank < input.size(); ++rank)
+  for (size_t rank = 0; rank < input.size(); ++rank)
   {
     const int value = Challenge::inVectorRanking(input, rank);
     const int true_val = ordered_array[rank];
