@@ -1,7 +1,7 @@
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 
 std::ostream &operator<<(std::ostream &os, const std::vector<int> vec)
 {
@@ -152,24 +152,27 @@ int linearTimeOrderStatistics(std::vector<int> input, int rank)
     return value;
 }
 
+
+
 int main()
 {
-
+    /*
     std::vector<int> input = {97, 34, 16, 13, 25, 57, 88,
                               15, 23, 98, 29, 77, 14, 58, 83, 49, 60, 40, 52, 65,
                               31, 55, 2, 33, 30, 35, 35, 35, 35, 35, 35, 42, 20, 8, 75};
-
+    std::vector<int> arr = input;
+    std::sort(arr.begin(), arr.end());
+    */
+    /*
     for (int rank = 1; rank < input.size(); rank++)
     {
-        int value = linearTimeOrderStatistics(input, rank);
-        std::cout << "Valore " << value << std::endl;
+        const int value = linearTimeOrderStatistics(input, rank);
+        const int true_val = arr[rank - 1];
 
-        int arr[] = {97, 34, 16, 13, 25, 57, 88,
-                     15, 23, 98, 29, 77, 14, 58, 83, 49, 60, 40, 52, 65,
-                     31, 55, 2, 33, 30, 35, 35, 35, 35, 35, 35, 42, 20, 8, 75};
-        int n = sizeof(arr) / sizeof(arr[0]);
-        std::sort(arr, arr + n);
-        std::cout << "Valore esatto: " << arr[rank - 1] << std::endl;
+        std::cout<<"Test "<<((value == true_val) ? "PASSED" : "FAILED");
+        std::cout<<"\tExpected value: "<<true_val;
+        std::cout<<"\tActual value: "<<value<<std::endl;
     }
+    */
     return 0;
 }
