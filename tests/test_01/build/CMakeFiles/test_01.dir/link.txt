@@ -1,1 +1,0 @@
-/u/sw/toolchains/gcc-glibc/11.2.0/prefix/bin/g++  -Wall -I /home/denis/Desktop/uni/alg/challenge2/Linear-Time-Order-Statistics/tests/test_01/../../include -rdynamic CMakeFiles/test_01.dir/src/main.o CMakeFiles/test_01.dir/home/denis/Desktop/uni/alg/challenge2/Linear-Time-Order-Statistics/src/challenge2.o -o test_01 
