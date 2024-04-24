@@ -1,5 +1,5 @@
-#ifndef CHALLENGE_2
-#define CHALLENGE_2
+#ifndef HH_CHALLENGE_2_HH
+#define HH_CHALLENGE_2_HH
 
 #include <iostream>
 #include <vector>

@@ -14,13 +14,8 @@ std::ostream &operator<<(std::ostream &os, const std::vector<int> vec)
   return os;
 }
 
-int main()
-{ 
-  
-  std::vector<int> input = {97, 34, 16, 13, 25, 57, 88,
-  15, 23, 98, 29, 77, 14, 58, 83, 49, 60, 40, 52, 65,
-  31, 55, 2, 33, 30, 35, 42, 20, 8, 75};
-  
+void do_tests(std::vector<int> &input)
+{
   std::vector<int> ordered_array = input;
   std::sort(ordered_array.begin(), ordered_array.end());
 
@@ -29,10 +24,23 @@ int main()
     const int value = Challenge::inVectorRanking(input, rank);
     const int true_val = ordered_array[rank];
 
-    std::cout<<"Test "<<((value == true_val) ? "PASSED" : "FAILED");
+    std::cout<<"Rank = "<<rank;
     std::cout<<"\tExpected value: "<<true_val;
-    std::cout<<"\tActual value: "<<value<<std::endl;
+    std::cout<<"\tActual value:"<<value;
+    std::cout<<"\t\tTest "<<((value == true_val) ? "PASSED" : "FAILED")<<std::endl;
   }
+}
+
+int main()
+{ 
+  
+  std::vector<int> input = {97, 34, 16, 13, 25, 57, 88,
+  15, 23, 98, 29, 77, 14, 58, 83, 49, 60, 40, 52, 65,
+  31, 55, 2, 33, 30, 35, 42, 20, 8, 75};
+  
+  std::cout<<input<<std::endl;
+
+  do_tests(input);
 
   std::cout<<input<<std::endl;
 
