@@ -43,17 +43,25 @@ int Challenge::find_pivot(
   if (size > 0)
   {
     int last_chunk_size = size % 5;
-    std::vector<int> medians;
+    const int size_medians = size / 5 + ((0 != last_chunk_size) ? 1 : 0);   //lol, yoda notation
+    std::vector<int> medians(size_medians);
+    std::vector<int>::iterator index = medians.begin();
     
     std::vector<int>::iterator j;
     for(j = first; j < last - last_chunk_size; j += 5)
     {
-      medians.push_back(sort_and_find_median(j, j + 5));
+      //medians.push_back(sort_and_find_median(j, j + 5));
+      *(index) = sort_and_find_median(j, j + 5);
+      ++index;
     }
     if (last_chunk_size > 0)
-      medians.push_back(sort_and_find_median(j, j + last_chunk_size));
+    {
+      //medians.push_back(sort_and_find_median(j, j + last_chunk_size));
+      *(index) = sort_and_find_median(j, j + last_chunk_size);
+      ++index;
+    }
 
-    if(medians.size() != 1)
+    if(/*medians.size()*/size_medians != 1)
       return find_pivot(medians.begin(), medians.end());
     else
       return medians.at(0);
