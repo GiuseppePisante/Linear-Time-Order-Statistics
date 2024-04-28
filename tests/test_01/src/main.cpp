@@ -21,7 +21,8 @@ void do_tests(std::vector<int> &input)
 
   for (size_t rank = 0; rank < input.size(); ++rank)
   {
-    const int value = Challenge::inVectorRanking(input, rank);
+    const int value = Challenge::nonRecursiveInVectorRanking(input, rank);
+    //const int value = Challenge::inVectorRanking(input, rank);
     const int true_val = ordered_array[rank];
 
     std::cout<<"Rank = "<<rank;
