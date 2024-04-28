@@ -34,7 +34,7 @@ int Challenge::sort_and_find_median(
 }
 
 
-int Challenge::find_pivot(
+int Challenge::recursive::find_pivot(
   const std::vector<int>::iterator &first,
   const std::vector<int>::iterator &last
 )
@@ -50,18 +50,16 @@ int Challenge::find_pivot(
     std::vector<int>::iterator j;
     for(j = first; j < last - last_chunk_size; j += 5)
     {
-      //medians.push_back(sort_and_find_median(j, j + 5));
       *(index) = sort_and_find_median(j, j + 5);
       ++index;
     }
     if (last_chunk_size > 0)
     {
-      //medians.push_back(sort_and_find_median(j, j + last_chunk_size));
       *(index) = sort_and_find_median(j, j + last_chunk_size);
       ++index;
     }
 
-    if(/*medians.size()*/size_medians != 1)
+    if(size_medians != 1)
       return find_pivot(medians.begin(), medians.end());
     else
       return medians.at(0);
@@ -74,7 +72,7 @@ int Challenge::find_pivot(
 }
 
 
-int Challenge:: non_recursive_find_pivot(
+int Challenge::non_recursive::find_pivot(
   const std::vector<int>::iterator &first,
   const std::vector<int>::iterator &last
 )
@@ -82,9 +80,9 @@ int Challenge:: non_recursive_find_pivot(
   int size = std::distance(first, last);
   if (size > 0)
   { 
-    std::vector<int> *temp1 = new std::vector<int>;
-    std::vector<int> *temp2 = new std::vector<int>;
-    std::vector<int> *swap_temp;
+    std::vector<int> *temp1 = new std::vector<int>(size / 5 + 5);
+    std::vector<int> *temp2 = new std::vector<int>(size / 5 + 5);
+
 
     std::vector<int>::iterator start = first;
     std::vector<int>::iterator stop = last;
@@ -95,7 +93,7 @@ int Challenge:: non_recursive_find_pivot(
       const int last_chunk_size = size % 5;
       size = size / 5 + ((0 != last_chunk_size) ? 1 : 0);
 
-      temp1->resize(size);
+      //temp1->resize(size);
       std::vector<int>::iterator index = temp1->begin();
       std::vector<int>::iterator j;
 
@@ -110,13 +108,10 @@ int Challenge:: non_recursive_find_pivot(
         ++index;
       }
 
-      swap_temp = temp1;
-      temp1 = temp2;
-      temp2 = swap_temp;
-      swap_temp = nullptr;
+      std::swap(temp1, temp2);
 
       start = temp2->begin();
-      stop = temp2->end();
+      stop = start + size;
     }
 
     int result = *(start);
@@ -135,7 +130,7 @@ int Challenge:: non_recursive_find_pivot(
 
 
 
-int Challenge::worstCaseLinearTimeSelection(
+int Challenge::recursive::worstCaseLinearTimeSelection(
   const std::vector<int>::iterator &first,
   const std::vector<int>::iterator &last,
   const std::vector<int>::iterator &rank
@@ -183,7 +178,7 @@ int Challenge::worstCaseLinearTimeSelection(
 
 
 
-int Challenge::nonRecursiveWorstCaseLinearTimeSelection(
+int Challenge::non_recursive::worstCaseLinearTimeSelection(
   const std::vector<int>::iterator &first,
   const std::vector<int>::iterator &last,
   const std::vector<int>::iterator &rank
@@ -200,7 +195,7 @@ int Challenge::nonRecursiveWorstCaseLinearTimeSelection(
 
     do
     {
-      pivot = non_recursive_find_pivot(start, stop);
+      pivot = find_pivot(start, stop);
       k = start;
     
       for(auto j = start; j < stop; ++j)
@@ -228,7 +223,6 @@ int Challenge::nonRecursiveWorstCaseLinearTimeSelection(
 
     } while (k != rank + 1);
     
-
     return pivot;
     
   }

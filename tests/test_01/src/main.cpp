@@ -14,14 +14,14 @@ std::ostream &operator<<(std::ostream &os, const std::vector<int> vec)
   return os;
 }
 
-void do_tests(std::vector<int> &input)
+void do_tests(std::function<int(std::vector<int> &, const size_t)> func, std::vector<int> &input)
 {
   std::vector<int> ordered_array = input;
   std::sort(ordered_array.begin(), ordered_array.end());
 
   for (size_t rank = 0; rank < input.size(); ++rank)
   {
-    const int value = Challenge::nonRecursiveInVectorRanking(input, rank);
+    const int value = func(input, rank);
     //const int value = Challenge::inVectorRanking(input, rank);
     const int true_val = ordered_array[rank];
 
@@ -41,7 +41,7 @@ int main()
   
   std::cout<<input<<std::endl;
 
-  do_tests(input);
+  do_tests(Challenge::non_recursive::inVectorRanking, input);
 
   std::cout<<input<<std::endl;
 
