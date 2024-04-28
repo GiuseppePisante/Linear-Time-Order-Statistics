@@ -22,7 +22,6 @@ void do_tests(std::function<int(std::vector<int> &, const size_t)> func, std::ve
   for (size_t rank = 0; rank < input.size(); ++rank)
   {
     const int value = func(input, rank);
-    //const int value = Challenge::inVectorRanking(input, rank);
     const int true_val = ordered_array[rank];
 
     std::cout<<"Rank = "<<rank;

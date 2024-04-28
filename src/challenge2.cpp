@@ -28,8 +28,9 @@ int Challenge::sort_and_find_median(
   }
   else
   {
-    fprintf(stderr, "ERROR: in function \"sort_and_find_median\", \"last\" iterator must be greater than \"first\" iterator !\n");
-    exit(EXIT_FAILURE);
+    //fprintf(stderr, "ERROR: in function \"sort_and_find_median\", \"last\" iterator must be greater than \"first\" iterator !\n");
+    //exit(EXIT_FAILURE);
+    throw std::invalid_argument("ERROR: in function \"sort_and_find_median\", \"last\" iterator must be greater than \"first\" iterator !\n");
   }
 }
 
@@ -66,8 +67,9 @@ int Challenge::recursive::find_pivot(
   }
   else
   {
-    fprintf(stderr, "ERROR: in function \"find_pivot\", \"last\" iterator must be greater than \"first\" iterator !\n");
-    exit(EXIT_FAILURE);
+    //fprintf(stderr, "ERROR: in function \"find_pivot\", \"last\" iterator must be greater than \"first\" iterator !\n");
+    //exit(EXIT_FAILURE);
+    throw std::invalid_argument("ERROR: in function \"find_pivot\", \"last\" iterator must be greater than \"first\" iterator !\n");
   }
 }
 
@@ -123,8 +125,9 @@ int Challenge::non_recursive::find_pivot(
   }
   else
   {
-    fprintf(stderr, "ERROR: in function \"find_pivot\", \"last\" iterator must be greater than \"first\" iterator !\n");
-    exit(EXIT_FAILURE);
+    //fprintf(stderr, "ERROR: in function \"find_pivot\", \"last\" iterator must be greater than \"first\" iterator !\n");
+    //exit(EXIT_FAILURE);
+    throw std::invalid_argument("ERROR: in function \"find_pivot\", \"last\" iterator must be greater than \"first\" iterator !\n");
   }
 }
 
@@ -171,8 +174,9 @@ int Challenge::recursive::worstCaseLinearTimeSelection(
   }
   else
   {
-    fprintf(stderr, "ERROR: in function \"partition_vector\", \"last\" iterator must be greater than \"first\" iterator !\n");
-    exit(EXIT_FAILURE);
+    //fprintf(stderr, "ERROR: in function \"worstCaseLinearTimeSelection\", \"last\" iterator must be greater than \"first\" iterator !\n");
+    //exit(EXIT_FAILURE);
+    throw std::invalid_argument("ERROR: in function \"worstCaseLinearTimeSelection\", \"last\" iterator must be greater than \"first\" iterator !\n");
   }
 }
 
@@ -228,7 +232,8 @@ int Challenge::non_recursive::worstCaseLinearTimeSelection(
   }
   else
   {
-    fprintf(stderr, "ERROR: in function \"partition_vector\", \"last\" iterator must be greater than \"first\" iterator !\n");
-    exit(EXIT_FAILURE);
+    //fprintf(stderr, "ERROR: in function \"worstCaseLinearTimeSelection\", \"last\" iterator must be greater than \"first\" iterator !\n");
+    //exit(EXIT_FAILURE);
+    throw std::invalid_argument("ERROR: in function \"worstCaseLinearTimeSelection\", \"last\" iterator must be greater than \"first\" iterator !\n");
   }
 }

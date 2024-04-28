@@ -38,8 +38,9 @@ namespace Challenge
       }
       else
       {
-        fprintf(stderr, "ERROR: in function \"inVectorRanking\", rank must be between 0 and input.size()");
-        exit(EXIT_FAILURE);
+        //fprintf(stderr, "ERROR: in function \"inVectorRanking\", rank must be between 0 and input.size()");
+        //exit(EXIT_FAILURE);
+        throw std::invalid_argument("ERROR: in function \"inVectorRanking\", rank must be between 0 and input.size()");
       }
     }
 
@@ -74,11 +75,11 @@ namespace Challenge
       }
       else
       {
-        fprintf(stderr, "ERROR: in function \"inVectorRanking\", rank must be between 0 and input.size()");
-        exit(EXIT_FAILURE);
+        //fprintf(stderr, "ERROR: in function \"inVectorRanking\", rank must be between 0 and input.size()");
+        //exit(EXIT_FAILURE);
+        throw std::invalid_argument("ERROR: in function \"inVectorRanking\", rank must be between 0 and input.size()");
       }
     }
-
 
   }
 
